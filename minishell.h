@@ -6,7 +6,7 @@
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:28:05 by gchernys          #+#    #+#             */
-/*   Updated: 2023/01/12 22:31:53 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:42:13 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 
 enum e_token
 {
-	PIPE = 1,
-	REDIR,
-	SEMICOLON,
-	SPC,
-	OTHER,
+	PIPE = '|',
+	GREATER = '>',
+	LESSER = 'Z',
+	SINGLE_QUOTE = '\'',
+	DOUBLE_QUOTE = '"',
 };
 
 void	sh_signal_handle(void);
