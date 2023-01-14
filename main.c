@@ -6,7 +6,7 @@
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:28:08 by gchernys          #+#    #+#             */
-/*   Updated: 2023/01/12 19:05:04 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:20:49 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@
 // 		;
 // }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
+	(void)env;
+	char	**line;
 
-	// sh_signal_handle();
-	while (1)
+	line = argv;
+	// while (get_cmd("minishell>$", line) >= 0)
+	if (argc > 1)
 	{
-		sh_parse();
+		sh_lexer(line);
 	}
+	return (0);
 }
