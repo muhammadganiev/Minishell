@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:28:05 by gchernys          #+#    #+#             */
-/*   Updated: 2023/01/13 19:42:13 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/01/14 20:48:58 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ enum e_token
 	SINGLE_QUOTE = '\'',
 	DOUBLE_QUOTE = '"',
 };
+
+tybdef struct s_env
+{
+	t_list	*kms;
+	char	**env;
+} t_env;
 
 void	sh_signal_handle(void);
 void	sh_parse(void);

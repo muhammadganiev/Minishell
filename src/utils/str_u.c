@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_lexer.c                                         :+:      :+:    :+:   */
+/*   str_u.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 18:04:18 by gchernys          #+#    #+#             */
-/*   Updated: 2023/01/14 20:49:05 by muganiev         ###   ########.fr       */
+/*   Created: 2023/01/14 23:10:43 by muganiev          #+#    #+#             */
+/*   Updated: 2023/01/14 23:19:25 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
-void	sh_lexer(char *line)
+int ft_strequals(char *s1, char *s2)
 {
-	int i;
+    return(s1 && s2 && ft_strlen(s1) == ft_strlen(s2) 
+    && !ft_strncmp(s1, s2, ft_strlen(s1)));
+}
 
-	i = 0;
-	while (line[i])
-	{
-		
-	}
+int ft_strcontains(char *s1, char *s2)
+{
+    return(s1 && s2 && !ft_strncmp(s1, s2, ft_strlen(s2)));
 }

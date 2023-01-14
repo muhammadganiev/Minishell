@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_lexer.c                                         :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 18:04:18 by gchernys          #+#    #+#             */
-/*   Updated: 2023/01/14 20:49:05 by muganiev         ###   ########.fr       */
+/*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
+/*   Updated: 2023/01/14 22:51:59 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
+#include "executor.h"
+#include "parsing.h"
 
-void	sh_lexer(char *line)
+int executor(char *cmd, char **av, t_env *env)
 {
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		
-	}
+    exec_sig();
+    if (ft_strequals)
 }
