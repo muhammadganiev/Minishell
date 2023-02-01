@@ -3,50 +3,102 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:28:05 by gchernys          #+#    #+#             */
-/*   Updated: 2023/01/14 20:48:58 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/01 21:39:53 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include <stdio.h>
-# include <stdlib.h> // malloc, free, exit, getenv
-// write, access, read, close, fork, getcwd, chdir
-// unlink, execve, dup, dup2, pipe, isatty, ttyname, ttyslot
+# include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h> // open,
-# include <signal.h> // signal, sigaction, sigemptyset, sigaddset, kill
-# include <dirent.h> // opendir, readdir, closedir
-# include <sys/wait.h> //wait, waitpid, wait3, wait4
-# include <sys/stat.h> // stat, lstat, fstat
-# include <sys/ioctl.h> // ioctl
-# include <termios.h> //  tcsetattr, tcgetattr
-# include <readline/readline.h> //readline, rl_on_new_line, rl_replace_line
-# include <readline/history.h> //rl_clear_history, add_history, rl_redisplay
-# include <term.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
+# include <fcntl.h>
+# include <signal.h>
+# include <dirent.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <sys/ioctl.h>
+# include <termios.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <term.h>
 # include <errno.h>
 # include "libft/libft.h"
 
-enum e_token
-{
-	PIPE = '|',
-	GREATER = '>',
-	LESSER = 'Z',
-	SINGLE_QUOTE = '\'',
-	DOUBLE_QUOTE = '"',
-};
 
-tybdef struct s_env
+# define SYMBOLS "|><"
+# define SPACES " \t\r\n\f\v"
+# define QUOTES "\'\""
+
+typedef enum e_cmdtype
 {
-	t_list	*kms;
+	EXEC = 0,
+	REDIR = 1,
+	PIPE = 2,
+}	t_cmdtype;
+
+typedef struct s_keymap
+{
+	char	*key;
+	char	*val;
+}	t_keymap;
+
+typedef struct s_env
+{
+	t_list	*keymap;
 	char	**env;
-} t_env;
+}	t_env;
 
-void	sh_signal_handle(void);
-void	sh_parse(void);
-void	sh_lexer(char *line);
+typedef struct s_cmd
+{
+	int	type;
+}	t_cmd;
+
+typedef struct s_execmd
+{
+	int		type;
+	char	**argv;
+	t_env	*env;
+}	t_execmd;
+
+typedef struct s_pipecmd
+{
+	int		type;
+	t_cmd	*left;
+	t_cmd	*right;
+}	t_pipecmd;
+
+typedef struct s_redircmd
+{
+	int		type;
+	t_cmd	*subcmd;
+	int		mode;
+	int		fd;
+	char	*file;
+}	t_redircmd;
+
+typedef struct s_shinfo
+{
+	t_cmd		*cmd;
+	t_env		*env;
+	int			exit_status;
+	int			pipe_out;
+	int			pipe_in;
+	char		*delim;
+}	t_shinfo;
+
+extern	t_shinfo	g_shinfo;
+
+void	def_input_sig(void);
+int		ft_strequal(char *s1, char *s2);
+int		ft_strhas(char *s1, char *s2);
+size_t  ft_strchr_len(char *s, char c);
+int		get_cmd(char *prefix, char **buf);
+t_list	*find_key(t_list *lst, char *value);
+void	updt_keymap(t_keymap *keymap, char *value);
+char	*merge_keymap(t_keymap *keymap);
 
 #endif

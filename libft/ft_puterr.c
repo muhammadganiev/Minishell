@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_lexer.c                                         :+:      :+:    :+:   */
+/*   ft_puterr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 18:04:18 by gchernys          #+#    #+#             */
-/*   Updated: 2023/01/14 20:49:05 by muganiev         ###   ########.fr       */
+/*   Created: 2023/02/01 20:58:49 by gchernys          #+#    #+#             */
+/*   Updated: 2023/02/01 21:00:18 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	sh_lexer(char *line)
+void	ft_puterr(char *str)
 {
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		
-	}
+	ft_putstr_fd(str, 2);
+	exit(1);
 }
