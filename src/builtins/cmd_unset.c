@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_utils.c                                      :+:      :+:    :+:   */
+/*   cmd_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 20:45:37 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/10 20:23:47 by muganiev         ###   ########.fr       */
+/*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
+/*   Updated: 2023/02/10 20:26:03 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	get_cmd(char *prefix, char **buf)
+#include "minishell.h"
+
+void	ft_unset(char **argv, t_env *env)
 {
-	buf[0] = readline(prefix);
-	if (buf[0] == 0)
-		return (-1);
-	add_history(buf[0]);
-	return (0);
+	int		i;
+
+	i = 1;
+	while (argv[i])
+	{
+		remove_keymap(&env->kms, argv[i]);
+		i++;
+	}
 }

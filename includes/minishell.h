@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:28:05 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/01 21:39:53 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:26:35 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include <term.h>
 # include <errno.h>
 # include "libft/libft.h"
-
 
 # define SYMBOLS "|><"
 # define SPACES " \t\r\n\f\v"
@@ -90,12 +89,12 @@ typedef struct s_shinfo
 	char		*delim;
 }	t_shinfo;
 
-extern	t_shinfo	g_shinfo;
+extern	t_shinfo g_shinfo;
 
 void	def_input_sig(void);
 int		ft_strequal(char *s1, char *s2);
 int		ft_strhas(char *s1, char *s2);
-size_t  ft_strchr_len(char *s, char c);
+size_t	ft_strchr_len(char *s, char c);
 int		get_cmd(char *prefix, char **buf);
 t_list	*find_key(t_list *lst, char *value);
 void	updt_keymap(t_keymap *keymap, char *value);
