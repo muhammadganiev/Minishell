@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gchernys <gchernys@student.42.fr>          +#+  +:+       +#+         #
+#    By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/19 02:48:11 by gchernys          #+#    #+#              #
-#    Updated: 2022/07/14 22:47:33 by gchernys         ###   ########.fr        #
+#    Updated: 2023/02/01 21:29:29 by gchernys         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,9 @@ SRC_PART1 =	./ft_memset.c	\
 			./ft_putcharc.c		\
 			./ft_putstrs.c		\
 			./ft_strcmp.c		\
-			./ft_isspace.c
+			./ft_isspace.c		\
+			./ft_puterr.c		\
+			./ft_strldup.c
 	
 SRC_PART2 =	./ft_substr.c	\
 			./ft_strjoin.c	\

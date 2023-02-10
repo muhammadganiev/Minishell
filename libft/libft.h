@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchernys <gchernys@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:31:56 by gchernys          #+#    #+#             */
-/*   Updated: 2022/07/14 22:47:49 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/01 21:29:12 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
+char		*ft_strldup(char *src, int size);
+
 int			ft_atoi(const char *str);
 
 void		ft_bzero(void *s, size_t n);
 
 void		*ft_calloc(size_t smthn, size_t size);
+
+void		ft_puterr(char *str);
 
 int			ft_isalnum(int a);
 
