@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 18:36:39 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/17 07:45:14 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	run_pipecmd(t_cmd *cmd)
 
 	pcmd = (t_pipecmd *)cmd;
 	if (pipe(fd_pipe) < 0)
-		print_error("pipe");
+		ft_puterr("pipe");
 	p_ids[0] = child_pipecmd(pcmd->left, STDOUT_FILENO, fd_pipe[1], fd_pipe[0]);
 	p_ids[1] = child_pipecmd(pcmd->right, STDIN_FILENO, fd_pipe[0], fd_pipe[1]);
 	close(fd_pipe[0]);
@@ -118,6 +118,6 @@ int	runcmd(t_cmd *cmd)
 	else if (cmd->type == PIPE)
 		return (run_pipecmd(cmd));
 	else
-		print_error("runcmd");
+		ft_puterr("runcmd");
 	return (0);
 }

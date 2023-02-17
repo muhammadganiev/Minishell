@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:28:05 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/10 20:26:35 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/17 07:43:50 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <readline/history.h>
 # include <term.h>
 # include <errno.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 # define SYMBOLS "|><"
 # define SPACES " \t\r\n\f\v"
@@ -91,7 +91,6 @@ typedef struct s_shinfo
 
 extern	t_shinfo g_shinfo;
 
-void	def_input_sig(void);
 int		ft_strequal(char *s1, char *s2);
 int		ft_strhas(char *s1, char *s2);
 size_t	ft_strchr_len(char *s, char c);
@@ -99,5 +98,28 @@ int		get_cmd(char *prefix, char **buf);
 t_list	*find_key(t_list *lst, char *value);
 void	updt_keymap(t_keymap *keymap, char *value);
 char	*merge_keymap(t_keymap *keymap);
+void	ft_clearsplit(char **str);
+void	add_keymap(t_list **lst, char *keyval, int add);
+void	rm_keymap(t_list **lst, char *key);
+void	clear_env(t_env *env);
+void	clear_keymap(void *content);
+t_env	*init_env(char **env);
+char	**get_env(t_list *list);
+void	updt_env(t_env *env);
+void	sig_handler_heredoc(int sig_num);
+char	*ft_first_word(char *str);
+void	ft_remove_char(char *str, char c);
+char	*ft_strljoin(char *s1, char *s2, int n);
+void	ft_clearsplit(char **str);
+size_t	ft_strdlen(char **s);
+void	exit_app(int status);
+void	update_exitstatus(void);
+void	ctrl_c(int sig);
+void	ctrl_d(void);
+void	define_exec_signals(void);
+void	def_input_sig(void);
+void	clear_cmd(t_cmd *cmd);
+pid_t	ft_fork(void);
+void	clear_cmd(t_cmd *cmd);
 
 #endif

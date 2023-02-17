@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_utils.c                                      :+:      :+:    :+:   */
+/*   redirection_extra.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 20:45:37 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/17 07:35:02 by gchernys         ###   ########.fr       */
+/*   Created: 2023/02/17 06:47:46 by gchernys          #+#    #+#             */
+/*   Updated: 2023/02/17 07:37:39 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/parsing.h"
 
-int	get_cmd(char *prefix, char **buf)
+void	checkheredoc_status(int stat, int fd)
 {
-	buf[0] = readline(prefix);
-	if (buf[0] == 0)
-		return (-1);
-	add_history(buf[0]);
-	return (0);
+	if (WEXITSTATUS(stat))
+	{
+		g_shinfo.exit_status = WEXITSTATUS(stat);
+		close(fd);
+		g_shinfo.pipe_out = -1;
+	}
 }

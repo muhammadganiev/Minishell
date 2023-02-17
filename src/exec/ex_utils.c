@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 18:35:35 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/17 07:45:14 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*make_command(char *path, char *bin)
 
 	buff = malloc(sizeof(char) * (len_ch(path, 0) + len_ch(bin, 0) + 2));
 	if (!buff)
-		print_error("malloc error");
+		ft_puterr("malloc error");
 	i = 0;
 	j = 0;
 	while (path[j])
@@ -71,7 +71,7 @@ char	*str_ndup(char *str, unsigned int n)
 	i = 0;
 	buff = malloc(sizeof(char) * (n + 1));
 	if (!buff)
-		print_error("malloc error");
+		ft_puterr("malloc error");
 	while (i < n)
 		buff[i++] = *str++;
 	buff[n] = 0;

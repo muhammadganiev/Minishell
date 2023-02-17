@@ -6,7 +6,7 @@
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:31:56 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/01 21:29:12 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/17 07:16:24 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char		*ft_strjoin(char *s1, char *s2);
 
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 
-int			ft_strlen(const char *str);
+size_t		ft_strlen(const char *str);
 
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 

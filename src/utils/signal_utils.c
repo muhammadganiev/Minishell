@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_utils.c                                      :+:      :+:    :+:   */
+/*   signal_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 20:45:37 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/17 07:35:02 by gchernys         ###   ########.fr       */
+/*   Created: 2023/02/17 06:38:10 by gchernys          #+#    #+#             */
+/*   Updated: 2023/02/17 07:56:51 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../../includes/minishell.h"
 
-int	get_cmd(char *prefix, char **buf)
+void	sig_handler_heredoc(int sig_num)
 {
-	buf[0] = readline(prefix);
-	if (buf[0] == 0)
-		return (-1);
-	add_history(buf[0]);
-	return (0);
+	if (sig_num == SIGINT)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+		ft_putstr_fd("  \b\b", 2);
+		write(2, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		close(g_shinfo.pipe_in);
+		close(g_shinfo.pipe_out);
+		free(g_shinfo.delim);
+		exit_app(1);
+	}
 }

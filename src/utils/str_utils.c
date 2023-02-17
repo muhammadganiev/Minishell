@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int ft_strequal(char *s1, char *s2)
 {
@@ -31,4 +31,14 @@ size_t  ft_strchr_len(char *s, char c)
     while (s[i] && s[i] != c)
         i++;
     return (i);
+}
+
+size_t	ft_strdlen(char **s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
