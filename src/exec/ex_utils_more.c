@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ex_utils_more.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 18:31:40 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:43:01 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "executor.h"
-#include "parser.h"
+#include "../../includes/minishell.h"
+#include "../../includes/executor.h"
+#include "../../includes/parsing.h"
 
 void	child_redircmd(t_redircmd *rcmd)
 {
 	int		fd_redirect;
 
-	if (ft_strequals(rcmd->file, ".") && rcmd->fd > 2)
+	if (ft_strequal(rcmd->file, ".") && rcmd->fd > 2)
 	{
-		if (g_appinfo.pipe_out == -1)
-			exit_app(g_appinfo.exit_status);
+		if (g_shinfo.pipe_out == -1)
+			exit_app(g_shinfo.exit_status);
 		dup2(rcmd->fd, STDIN_FILENO);
 		close(rcmd->fd);
-		runcmd(rcmd->cmd);
-		exit_app(g_appinfo.exit_status);
+		runcmd(rcmd->subcmd);
+		exit_app(g_shinfo.exit_status);
 	}
 	close(rcmd->fd);
 	fd_redirect = open(rcmd->file, rcmd->mode, 0666);
@@ -33,12 +33,51 @@ void	child_redircmd(t_redircmd *rcmd)
 	{
 		if (errno == 13)
 		{
-			ft_fprintf(2, "%s: Permission denied\n", rcmd->file);
+			ft_puterr("Permision denied");
 			exit_app(1);
 		}
-		ft_fprintf(2, "%s: No such file or directory\n", rcmd->file);
+		ft_puterr("No such file or directory");
 		exit_app(1);
 	}
-	runcmd(rcmd->cmd);
-	exit_app(g_appinfo.exit_status);
+	runcmd(rcmd->subcmd);
+	exit_app(g_shinfo.exit_status);
+}
+
+void	print_env(t_list *lst)
+{
+	t_list	*curr;
+	t_keymap	*km;
+
+	curr = lst;
+	while (curr)
+	{
+		km = (t_keymap *)curr->content;
+		if (km->val != NULL && !ft_strequal(km->key, "OLDPWD")
+			&& !ft_strequal(km->key, "?"))
+			ft_printf("%s=%s\n", km->key, km->val);
+		curr = curr->next;
+	}
+}
+
+void	print_export(t_list *lst)
+{
+	t_list	*sorted;
+	t_list	*curr;
+	t_keymap	*km;
+
+	sorted = sort_keymap_alpha(lst);
+	curr = sorted;
+	while (curr)
+	{
+		km = (t_keymap *)curr->content;
+		if (km->val != NULL)
+		{
+			if (!ft_strequal(km->key, "_") && !ft_strequal(km->key, "?"))
+				printf("declare -x %s=\"%s\"\n", km->key, km->val);
+		}
+		else
+			printf("declare -x %s\n", km->key);
+		curr = curr->next;
+	}
+	free(sorted);
 }

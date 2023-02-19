@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 20:26:03 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:55:44 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
+#include "../../includes/parsing.h"
+#include "../../includes/executor.h"
 
 void	ft_unset(char **argv, t_env *env)
 {
@@ -19,7 +21,7 @@ void	ft_unset(char **argv, t_env *env)
 	i = 1;
 	while (argv[i])
 	{
-		remove_keymap(&env->kms, argv[i]);
+		rm_keymap(&env->keymap, argv[i]);
 		i++;
 	}
 }

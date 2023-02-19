@@ -6,7 +6,7 @@
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:28:05 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/17 07:43:50 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:46:59 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,8 @@ void	def_input_sig(void);
 void	clear_cmd(t_cmd *cmd);
 pid_t	ft_fork(void);
 void	clear_cmd(t_cmd *cmd);
+void	print_env(t_list *lst);
+void	print_export(t_list *lst);
+t_list	*sort_keymap_alpha(t_list *lst);
 
 #endif

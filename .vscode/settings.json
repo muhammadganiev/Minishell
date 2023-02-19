@@ -2,6 +2,7 @@
     "files.associations": {
         "minishell.h": "c",
         "stdlib.h": "c",
-        "parsing.h": "c"
+        "parsing.h": "c",
+        "executor.h": "c"
     }
 }

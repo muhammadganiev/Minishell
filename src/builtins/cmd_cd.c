@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 20:18:20 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:06:09 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "executor.h"
+#include "../../includes/minishell.h"
+#include "../../includes/parsing.h"
+#include "../../includes/executor.h"
 
 static int	ft_chspecial(char *path, char *key, t_list *kms)
 {
 	t_list	*km;
 
-	km = find_keymap_key(kms, key);
-	if (!path || (km && chdir(((t_km *)km->content)->val) < 0))
+	km = find_key(kms, key);
+	if (!path || (km && chdir(((t_keymap *)km->content)->val) < 0))
 	{
-		ft_fprintf(2, "cd: %s: No such file or directory\n", path);
-		g_appinfo.exit_status = 1;
+		printf("cd: %s: No such file or directory\n", path);
+		g_shinfo.exit_status = 1;
 		return (2);
 	}
 	else if (!km)
 	{
-		ft_fprintf(2, "cd: %s not set\n", key);
+		printf("cd: %s not set\n", key);
 		return (1);
 	}
 	return (0);
@@ -39,8 +40,8 @@ int	ft_chdir(char *path)
 	parse_path = ft_first_word(path);
 	if (chdir(parse_path) < 0)
 	{
-		ft_fprintf(2, "cd: %s: No such file or directory\n", parse_path);
-		g_appinfo.exit_status = 1;
+		printf("cd: %s: No such file or directory\n", parse_path);
+		g_shinfo.exit_status = 1;
 		free(parse_path);
 		return (1);
 	}
@@ -56,12 +57,12 @@ void	ft_cd(char **argv, t_env *env)
 	path = argv[1];
 	if (!path || *path == '-')
 	{
-		if (!ft_chspecial(path, "OLDPWD", env->kms))
+		if (!ft_chspecial(path, "OLDPWD", env->keymap))
 		{
 			pwd = ft_get_pwd();
 			if (pwd)
 			{
-				ft_printf("%s\n", pwd);
+				printf("%s\n", pwd);
 				free(pwd);
 			}
 		}
@@ -69,7 +70,7 @@ void	ft_cd(char **argv, t_env *env)
 	}
 	if (!path || *path == '~')
 	{
-		ft_chspecial(path, "HOME", env->kms);
+		ft_chspecial(path, "HOME", env->keymap);
 		return ;
 	}
 	ft_update_pwd("OLDPWD", env);

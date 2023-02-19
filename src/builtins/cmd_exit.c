@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 20:22:22 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:59:26 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
+#include "../../includes/parsing.h"
+#include "../../includes/executor.h"
 
 static int	strdigitlen(const char *str)
 {
@@ -55,7 +57,7 @@ long long	ft_atoull(char *str)
 	i = 0;
 	num = 0;
 	sign = 1;
-	while (ft_strchr(WHITESPACE, str[i]))
+	while (ft_strchr(SPACES, str[i]))
 		i++;
 	if (str[i] == '-')
 		sign = -1;
@@ -99,19 +101,19 @@ void	ft_exit(char **argv, t_env *env)
 
 	(void) env;
 	if (!argv || !argv[1])
-		exit_app(g_appinfo.exit_status);
+		exit_app(g_shinfo.exit_status);
 	if (argv[2])
 	{
-		ft_fprintf(2, "exit: too many arguments\n");
+		printf("exit: too many arguments\n");
 		exit_app(1);
 	}
 	val = ft_atoull(argv[1]);
 	if (!ft_isnumber(val, argv[1]))
 	{
-		ft_fprintf(2, "exit: %s: numeric argument required\n", argv[1]);
+		printf("exit: %s: numeric argument required\n", argv[1]);
 		exit_app(255);
 	}
 	ft_printf("exit\n");
-	g_appinfo.exit_status = val % 256;
-	exit_app(g_appinfo.exit_status);
+	g_shinfo.exit_status = val % 256;
+	exit_app(g_shinfo.exit_status);
 }

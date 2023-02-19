@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 20:22:47 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:55:34 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
+#include "../../includes/parsing.h"
+#include "../../includes/executor.h"
 
 static int	verify_key(char *str)
 {
@@ -37,13 +39,13 @@ void	ft_export(char **argv, t_env *env)
 	{
 		if (ft_isdigit(*argv[i]) || !verify_key(argv[i]))
 		{
-			ft_fprintf(2, "export: `%s': not a valid identifier\n", argv[i]);
-			g_appinfo.exit_status = 1;
+			printf("export: `%s': not a valid identifier\n", argv[i]);
+			g_shinfo.exit_status = 1;
 		}
 		else
-			add_keymap(&env->kms, argv[i], 0);
+			add_keymap(&env->keymap, argv[i], 0);
 		i++;
 	}
 	if (i == 1)
-		print_export(env->kms);
+		print_export(env->keymap);
 }

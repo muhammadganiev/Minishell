@@ -6,7 +6,7 @@
 #    By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/12 16:27:57 by gchernys          #+#    #+#              #
-#    Updated: 2023/02/17 08:07:14 by gchernys         ###   ########.fr        #
+#    Updated: 2023/02/19 23:03:55 by gchernys         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ FILES =	./main.c								\
 		./src/builtins/cmd_execve.c				\
 		./src/builtins/cmd_exit.c				\
 		./src/builtins/cmd_export.c				\
-		./src/builtins/cmd_unset.c
+		./src/builtins/cmd_unset.c				\
+		./src/builtins/cmd_pwd.c
 		
 FILES_O = $(FILES:.c=.o)
 
@@ -70,6 +71,8 @@ clean:
 	cd src && rm -rf *.o
 	cd src/utils && rm -rf *.o
 	cd src/parsing && rm -rf *.o
+	cd src/builtins && rm -rf *.o
+	cd src/exec && rm -rf *.o
 	$(CLEANLIB)
 
 fclean: clean

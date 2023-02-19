@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_pwd copy.c                                     :+:      :+:    :+:   */
+/*   cmd_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/10 20:23:00 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:07:28 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
+#include "../../includes/parsing.h"
+#include "../../includes/executor.h"
 
 char	*ft_get_pwd(void)
 {
@@ -33,11 +35,11 @@ void	ft_pwd(void)
 	}
 	else
 	{
-		curr = find_keymap_key(g_appinfo.env->kms, "PWD");
+		curr = find_key(g_shinfo.env->keymap, "PWD");
 		if (curr)
-			ft_printf("%s\n", ((t_km *)curr->content)->val);
+			printf("%s\n", ((t_keymap *)curr->content)->val);
 		else
-			ft_printf("error: can't find PWD\n");
+			printf("error: can't find PWD\n");
 	}
 }
 
@@ -49,7 +51,7 @@ void	ft_update_pwd(char *key, t_env *env)
 	char	*pwdtemp;
 
 	keyvalue = NULL;
-	curr = find_keymap_key(env->kms, key);
+	curr = find_key(env->keymap, key);
 	if (curr)
 	{
 		keytemp = ft_strjoin(key, "=");
@@ -63,9 +65,9 @@ void	ft_update_pwd(char *key, t_env *env)
 		keyvalue = ft_strjoin(keytemp, pwdtemp);
 		free(keytemp);
 		free(pwdtemp);
-		free(((t_km *)curr->content)->key);
-		free(((t_km *)curr->content)->val);
-		update_keymap((t_km *)curr->content, keyvalue);
+		free(((t_keymap *)curr->content)->key);
+		free(((t_keymap *)curr->content)->val);
+		updt_keymap((t_keymap *)curr->content, keyvalue);
 		free(keyvalue);
 	}
 }

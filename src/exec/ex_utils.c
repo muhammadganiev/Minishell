@@ -6,13 +6,13 @@
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/17 07:45:14 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/19 21:59:56 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "executor.h"
-#include "parser.h"
+#include "../../includes/minishell.h"
+#include "../../includes/executor.h"
+#include "../../includes/parsing.h"
 
 int	len_ch(char *str, char ch)
 {

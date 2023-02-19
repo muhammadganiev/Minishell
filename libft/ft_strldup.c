@@ -6,9 +6,11 @@
 /*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 21:27:19 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/01 21:28:48 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:51:21 by gchernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strldup(char *src, int size)
 {
