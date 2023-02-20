@@ -6,37 +6,27 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 05:12:31 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/20 16:27:51 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:51:23 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	int		len1;
-	int		len2;
-	char	*str;
+	char	*result;
+	int		s1_size;
+	int		total_size;
 
-	if (s1 && s2)
+	if (!s1 || !s2)
+		return (0);
+	s1_size = ft_strlen(s1);
+	total_size = s1_size + ft_strlen(s2) + 1;
+	result = (char *)malloc(sizeof(char) * total_size);
+	if (result)
 	{
-		len1 = ft_strlen(s1);
-		len2 = ft_strlen(s2);
-		str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-		if (str == NULL)
-			return (NULL);
-		i = -1;
-		while (s1[++i])
-			str[i] = s1[i];
-		i = -1;
-		while (s2[++i])
-		{
-			str[len1] = s2[i];
-			len1++;
-		}
-		str[len1] = '\0';
-		return (str);
-	}
-	return (NULL);
+		ft_strlcpy(result, s1, s1_size + 1);
+		ft_strlcat(result, s2, total_size);
+	}	
+	return (result);
 }

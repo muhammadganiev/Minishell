@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 05:10:41 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/20 16:27:51 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:40:53 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*tmp;
+	t_list	*last_lst;
 
-	if (lst)
+	if (!lst[0])
+		lst[0] = new;
+	else
 	{
-		if (*lst == NULL)
-			*lst = new;
-		else
-		{
-			tmp = ft_lstlast(*(lst));
-			tmp->next = new;
-		}
+		last_lst = ft_lstlast(lst[0]);
+		last_lst->next = new;
 	}
 }

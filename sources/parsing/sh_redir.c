@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 06:45:01 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/20 16:47:17 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:22:05 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_cmd	*go_next(t_cmd *cmd, char **ps, char *es, t_env *env)
 		return (0);
 	if (tok != -2)
 		free(file);
-	cmd = parsingedirs(cmd, ps, es, env);
+	cmd = parsingredirs(cmd, ps, es, env);
 	return (cmd);
 }
 
@@ -37,7 +37,7 @@ static t_cmd	*get_redircmd(int tok, t_cmd *cmd, char	*file)
 	return (cmd);
 }
 
-t_cmd	*parsingedirs(t_cmd *cmd, char **ps, char *es, t_env *env)
+t_cmd	*parsingredirs(t_cmd *cmd, char **ps, char *es, t_env *env)
 {
 	int		tok;
 	char	*file;
@@ -51,7 +51,7 @@ t_cmd	*parsingedirs(t_cmd *cmd, char **ps, char *es, t_env *env)
 			return (ft_fprintf(1, "syntax error\n"), NULL);
 		if (tok == '-')
 			cmd = heredoccmd(cmd, ft_strdup("."), file, env);
-		cmd = parsingedirs(cmd, ps, es, env);
+		cmd = parsingredirs(cmd, ps, es, env);
 		cmd = get_redircmd(tok, cmd, file);
 	}
 	else

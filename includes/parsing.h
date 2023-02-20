@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:34:10 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:17:26 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:22:52 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_cmd	*parsepipe(char **ps, char *es, t_env *env);
 t_cmd	*pipecmd(t_cmd *left, t_cmd *right);
 
 // redirs
-t_cmd	*parseredirs(t_cmd *cmd, char **ps, char *es, t_env *env);
+t_cmd	*parsingredirs(t_cmd *cmd, char **ps, char *es, t_env *env);
 t_cmd	*redircmd(t_cmd *subcmd, char *file, int mode, int fd);
 
 // redirs_utils

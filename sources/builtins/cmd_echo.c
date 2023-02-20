@@ -6,11 +6,12 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:19:56 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:18:18 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 static int	ft_n_compere(char *flag)
 {
 	int	i;

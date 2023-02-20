@@ -6,12 +6,13 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:20:04 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:13:44 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
 void	ft_env(t_env *env)
 {
-	print_env(env->keymap);
+	print_env(env->kms);
 }

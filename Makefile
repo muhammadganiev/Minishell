@@ -6,7 +6,7 @@
 #    By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/12 16:27:57 by gchernys          #+#    #+#              #
-#    Updated: 2023/02/20 16:47:17 by muganiev         ###   ########.fr        #
+#    Updated: 2023/02/20 17:28:08 by muganiev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,27 +41,27 @@ SOURCES_LIST 		= main.c sh_debug.c sh_env.c sh_keymap.c sorting_list.c sh_signal
 						utils/env_utils.c \
 						utils/utils.c \
 						utils/signal_utils.c \
-						builtins/ft_cd.c \
-						builtins/ft_echo.c \
-						builtins/ft_env.c \
-						builtins/ft_exit.c \
-						builtins/ft_export.c \
-						builtins/ft_pwd.c \
-						builtins/ft_unset.c \
-						builtins/ft_execve.c \
-						parsing/parsing.c \
-						parsing/exec.c \
+						builtins/cmd_cd.c \
+						builtins/cmd_echo.c \
+						builtins/cmd_env.c \
+						builtins/cmd_exit.c \
+						builtins/cmd_export.c \
+						builtins/cmd_pwd.c \
+						builtins/cmd_unset.c \
+						builtins/cmd_execve.c \
+						parsing/sh_parsing.c \
+						parsing/sh_exec.c \
 						parsing/exec_utils.c \
-						parsing/pipe.c \
+						parsing/sh_pipe.c \
 						parsing/block.c \
-						parsing/quote.c \
-						parsing/redirs_utils.c \
-						parsing/redirs.c \
-						parsing/token.c \
-						parsing/expansion.c \
-						executor/executor.c \
-						executor/executor_utils.c \
-						executor/executor_utils2.c
+						parsing/sh_quote.c \
+						parsing/redir_utils.c \
+						parsing/sh_redir.c \
+						parsing/sh_tokens.c \
+						parsing/sh_expansion.c \
+						exec/executor.c \
+						exec/ex_utils.c \
+						exec/ex_utils2.c
 						
 SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
@@ -86,7 +86,7 @@ $(NAME): $(LIBFT) $(FT_PRINTF) $(OBJECTS_DIRECTORY) $(OBJECTS)
 $(OBJECTS_DIRECTORY):
 	@mkdir -p $(OBJECTS_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)/parsing
-	@mkdir -p $(OBJECTS_DIRECTORY)/executor
+	@mkdir -p $(OBJECTS_DIRECTORY)/exec
 	@mkdir -p $(OBJECTS_DIRECTORY)/builtins
 	@mkdir -p $(OBJECTS_DIRECTORY)/utils
 	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"

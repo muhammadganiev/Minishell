@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 04:03:48 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/20 16:27:51 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:40:41 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*linker;
+	t_list	*result;
 
-	linker = (t_list *)malloc(sizeof(t_list));
-	if (linker == NULL)
-		return (NULL);
-	linker->content = (void *)content;
-	linker->next = NULL;
-	return (linker);
+	result = (t_list *)malloc(sizeof(t_list));
+	if (result)
+	{
+		result[0].content = content;
+		result[0].next = NULL;
+	}
+	return (result);
 }

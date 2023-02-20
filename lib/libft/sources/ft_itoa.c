@@ -6,60 +6,59 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 19:24:10 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/20 16:27:51 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:48:31 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_array(char *x, unsigned int number, long int len)
+static size_t	digitlen(int n)
 {
-	while (number > 0)
-	{
-		x[len--] = 48 + (number % 10);
-		number = number / 10;
-	}
-	return (x);
-}
+	size_t	i;
 
-long int	ft_len(int n)
-{
-	int					len;
-
-	len = 0;
-	if (n <= 0)
-		len = 1;
-	while (n != 0)
+	if (n == 0)
+		return (1);
+	if (n == -2147483648)
+		return (11);
+	i = 0;
+	if (n < 0)
 	{
-		len++;
-		n = n / 10;
+		i++;
+		n *= -1;
 	}
-	return (len);
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char				*x;
-	long int			len;
-	unsigned int		number;
-	int					sign;
+	size_t		i;
+	size_t		len;
+	char		*result;
 
-	sign = 1;
-	len = ft_len(n);
-	x = (char *)malloc(sizeof(char) * (len + 1));
-	if (!x)
-		return (NULL);
-	x[len--] = '\0';
-	if (n == 0)
-		x[0] = '0';
+	len = digitlen(n);
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (0);
+	result[len] = '\0';
+	if (n == -2147483648)
+		return (ft_memcpy(result, "-2147483648", 11));
 	if (n < 0)
 	{
-		sign *= -1;
-		number = n * -1;
-		x[0] = '-';
+		n *= -1;
+		result[0] = '-';
 	}
-	else
-		number = n;
-	x = ft_array(x, number, len);
-	return (x);
+	i = len - 1;
+	if (n == 0)
+		result[i] = '0';
+	while (n > 0)
+	{
+		result[i--] = n % 10 + '0';
+		n /= 10;
+	}
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 15:59:49 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:47:17 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:21:59 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ t_cmd	*parseblock(char **ps, char *es, t_env *env)
 	if (!peek(ps, es, ")"))
 		print_error("syntax - missing )");
 	gettoken(ps, es, 0, env);
-	cmd = parsingedirs(cmd, ps, es, env);
+	cmd = parsingredirs(cmd, ps, es, env);
 	return (cmd);
 }

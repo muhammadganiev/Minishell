@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 04:22:24 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/20 16:27:51 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:40:40 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
+	int		i;
+	t_list	*next_lst;
 
+	if (!lst)
+		return (0);
+	next_lst = lst;
 	i = 0;
-	while (lst)
+	while (next_lst)
 	{
-		lst = lst->next;
 		i++;
+		next_lst = next_lst->next;
 	}
 	return (i);
 }

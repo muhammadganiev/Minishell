@@ -6,10 +6,9 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 06:45:01 by gchernys          #+#    #+#             */
-/*   Updated: 2023/02/20 16:47:17 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:22:52 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "parsing.h"
 
@@ -75,7 +74,7 @@ t_cmd	*parseexec(char **ps, char *es, t_env *env)
 	ret = execcmd(env);
 	cmd = (t_execcmd *)ret;
 	q = *ps;
-	ret = parsingedirs(ret, &q, es, env);
+	ret = parsingredirs(ret, &q, es, env);
 	if (!ret)
 		return (clearexec((t_cmd *)cmd, ps, es));
 	size = parseargv_size(*ps, es, env);

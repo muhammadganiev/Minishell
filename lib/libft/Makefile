@@ -6,107 +6,65 @@
 #    By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/19 02:48:11 by gchernys          #+#    #+#              #
-#    Updated: 2023/02/20 16:27:51 by muganiev         ###   ########.fr        #
+#    Updated: 2023/02/20 17:42:34 by muganiev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME 				= libft.a
+CC 					= gcc
+FLAGS 				= -Wall -Werror -Wextra
+LIB					= ar -rcs
+INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
-AR = ar
-ARFLAGS = crs
+HEADERS_DIRECTORY 	= ./includes/
+HEADERS_LIST 		= libft.h
+HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-CC = gcc
-CFLAG = -Wall -Wextra -Werror
+SOURCES_DIRECTORY 	= ./sources/
+SOURCES_LIST 		= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
+						ft_tolower.c ft_toupper.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
+						ft_strchr.c ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_atoi.c \
+						ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_memchr.c \
+						ft_memcmp.c ft_strdup.c ft_calloc.c ft_substr.c ft_strjoin.c \
+						ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+						ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+						ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+						ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
+						ft_lstmap.c
+SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
-RM = rm
-RMFLAG = -f
+OBJECTS_DIRECTORY 	= ./objects/
+OBJECTS_LIST 		= $(patsubst %.c, %.o, $(SOURCES_LIST))
+OBJECTS				= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
-INCLUDES =	./includes/../includes/libft.h
+# COLORS
+GREEN 				= \033[0;32m
+RED					= \033[0;31m
+RESET 				= \033[0m
 
-SRC_PART1 =	./sources/ft_memset.c	\
-			./sources/ft_bzero.c	\
-			./sources/ft_memcpy.c	\
-			./sources/ft_memmove.c	\
-			./sources/ft_memchr.c	\
-			./sources/ft_memcmp.c	\
-			./sources/ft_calloc.c	\
-			./sources/ft_strlen.c	\
-			./sources/ft_strlcpy.c	\
-			./sources/ft_strlcat.c	\
-			./sources/ft_strchr.c	\
-			./sources/ft_strrchr.c	\
-			./sources/ft_strncmp.c	\
-			./sources/ft_strnstr.c	\
-			./sources/ft_strdup.c	\
-			./sources/ft_isdigit.c	\
-			./sources/ft_atoi.c		\
-			./sources/ft_isalpha.c	\
-			./sources/ft_isalnum.c	\
-			./sources/ft_isascii.c	\
-			./sources/ft_isprint.c	\
-			./sources/ft_toupper.c	\
-			./sources/ft_striteri.c	\
-			./sources/ft_tolower.c	\
-			./sources/ft_putnbr.c	\
-			./sources/ft_putchar.c	\
-			./sources/ft_putstr.c	\
-			./sources/ft_strncpy.c	\
-			./sources/get_next_line.c	\
-			./sources/get_next_line_utils.c	\
-			./sources/ft_printf.c	\
-			./sources/ft_hexax.c	\
-			./sources/ft_basetendi.c	\
-			./sources/ft_printperc.c	\
-			./sources/ft_putcharc.c		\
-			./sources/ft_putstrs.c		\
-			./sources/ft_strcmp.c		\
-			./sources/ft_isspace.c
-	
-SRC_PART2 =	./sources/ft_substr.c	\
-			./sources/ft_strjoin.c	\
-			./sources/ft_strtrim.c	\
-			./sources/ft_split.c	\
-			./sources/ft_itoa.c		\
-			./sources/ft_strmapi.c	\
-			./sources/ft_putchar_fd.c	\
-			./sources/ft_putstr_fd.c	\
-			./sources/ft_putendl_fd.c	\
-			./sources/ft_putnbr_fd.c
+all: $(NAME)
 
-SRCS = 	$(SRC_PART1)	\
-	$(SRC_PART2)
-	
-OBJS = $(SRCS:.c=.o)
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
+	@$(LIB) $(NAME) $(OBJECTS)
+	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 
-SRC_BONUS =	./sources/ft_lstnew.c	\
-			./sources/ft_lstadd_front.c	\
-			./sources/ft_lstsize.c	\
-			./sources/ft_lstlast.c	\
-			./sources/ft_lstadd_back.c	\
-			./sources/ft_lstdelone.c	\
-			./sources/ft_lstclear.c	\
-			./sources/ft_lstiter.c	\
-			./sources/ft_lstmap.c
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
 
-OBJS_BONUS = $(SRC_BONUS:.c=.o)
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
+	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	@echo ".\c"
 
-all : $(NAME)
+clean:
+	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
-clean :
-	$(RM) $(RMFLAG) $(OBJS) $(OBJS_BONUS)
+fclean: clean
+	@rm -f $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
-fclean : clean
-	$(RM) $(RMFLAG) $(NAME)
-
-re : fclean all
-
-.c.o : $(SRCS) $(INCLUDES)
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
-$(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
-
-bonus : $(OBJS) $(OBJS_BONUS)
-	$(AR) $(ARFLAGS) $(NAME) $^
+re: fclean all
 
 .PHONY: all clean fclean re

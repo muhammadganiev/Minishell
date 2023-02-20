@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:21:01 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:17:25 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_unset(char **argv, t_env *env)
 	i = 1;
 	while (argv[i])
 	{
-		rm_keymap(&env->keymap, argv[i]);
+		remove_keymap(&env->kms, argv[i]);
 		i++;
 	}
 }

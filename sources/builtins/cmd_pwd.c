@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:20:52 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:17:12 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	ft_pwd(void)
 	}
 	else
 	{
-		curr = find_key(g_shinfo.env->keymap, "PWD");
+		curr = find_keymap_key(g_appinfo.env->kms, "PWD");
 		if (curr)
-			printf("%s\n", ((t_keymap *)curr->content)->val);
+			ft_printf("%s\n", ((t_km *)curr->content)->val);
 		else
-			printf("error: can't find PWD\n");
+			ft_printf("error: can't find PWD\n");
 	}
 }
 
@@ -49,7 +49,7 @@ void	ft_update_pwd(char *key, t_env *env)
 	char	*pwdtemp;
 
 	keyvalue = NULL;
-	curr = find_key(env->keymap, key);
+	curr = find_keymap_key(env->kms, key);
 	if (curr)
 	{
 		keytemp = ft_strjoin(key, "=");
@@ -63,9 +63,9 @@ void	ft_update_pwd(char *key, t_env *env)
 		keyvalue = ft_strjoin(keytemp, pwdtemp);
 		free(keytemp);
 		free(pwdtemp);
-		free(((t_keymap *)curr->content)->key);
-		free(((t_keymap *)curr->content)->val);
-		updt_keymap((t_keymap *)curr->content, keyvalue);
+		free(((t_km *)curr->content)->key);
+		free(((t_km *)curr->content)->val);
+		update_keymap((t_km *)curr->content, keyvalue);
 		free(keyvalue);
 	}
 }
