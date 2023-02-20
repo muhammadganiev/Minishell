@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:34:10 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/17 07:44:42 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:17:26 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,43 @@
 
 # include "minishell.h"
 
-t_cmd	*sh_parse(char *cursor, t_env *env);
-int		redirtoken(char **cursor);
-int		get_token(char **cursor);
-void	read_argv(char **cursor);
-int	get_argc(char *cursor);
-int	set_argv(char *cursor, char **argv, t_env *env);
-void	checkheredoc_status(int stat, int fd);
+// parser
+t_cmd	*parsecmd(char *s, t_env *env);
+t_cmd	*parseline(char **ps, char *es, t_env *env);
+int		peek(char **ps, char *es, char *toks);
+
+// exec
+t_cmd	*parseexec(char **ps, char *es, t_env *env);
+t_cmd	*execcmd(t_env *env);
+
+// exec_utils
+int		peekredir(char **ps, char *es, char **temp, t_env *env);
+t_cmd	*clearexec(t_cmd *cmd, char **ps, char *es);
+
+// pipe
+t_cmd	*parsepipe(char **ps, char *es, t_env *env);
+t_cmd	*pipecmd(t_cmd *left, t_cmd *right);
+
+// redirs
+t_cmd	*parseredirs(t_cmd *cmd, char **ps, char *es, t_env *env);
+t_cmd	*redircmd(t_cmd *subcmd, char *file, int mode, int fd);
+
+// redirs_utils
 void	heredoc(char *delim, t_env *env, int fd_pipe);
 t_cmd	*heredoccmd(t_cmd *subcmd, char *file, char *delim, t_env *env);
-t_cmd	*parse_redircmd(t_cmd *cmd, char **cursor, t_env *env);
-t_cmd	*new_redircmd(t_cmd *subcmd, int mode, int fd, char *file);
-t_cmd	*parse_execmd(char **cursor, t_env *env);
-t_cmd	*new_execmd(int argc, t_env *env);
-char *parse_key(char *quote);
-t_keymap	*parse_keymap(char **quote, t_env *env);
-int	expand_size(char **ps, int inside, t_env *env);
-int	expand_line(char **ps, char **argv, t_env *env);
-char	*expand(char *ps, t_env *env);
-t_cmd	*move_cursor(t_cmd *command, char **cursor, t_env *env);
-int	peek(char **cursor, char *token);
-t_cmd	*parse_pipe(char **cursor, t_env *env);
-t_cmd	*new_pipecmd(t_cmd *left, t_cmd *right);
-int	write_argv(char **cursor, char **argv, t_env *env);
-void	writeword(char **cursor, char **argv, char *q, t_env *env);
-int	word_size(char *cursor, char *quote, t_env *env);
-int	pure_word_size(char *cursor);
-int	redirtoken(char **cursor);
-int	get_token(char **cursor);
+
+// block
+t_cmd	*parseblock(char **ps, char *es, t_env *env);
+
+// quote
+int		parsequote(char **ps, char *es, char **argv, t_env *env);
+
+// token
+int		gettoken(char **ps, char *es, char **argv, t_env *env);
+
+// expansion
+int		expandsize(char **ps, char *es, int in_quote, t_env *env);
+int		expandline(char **ps, char *es, char **argv, t_env *env);
+char	*expansion(char *ps, char *es, t_env *env);
 
 #endif

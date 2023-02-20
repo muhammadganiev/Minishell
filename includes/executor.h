@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchernys <gchernys@42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:34:36 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/19 22:59:44 by gchernys         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:16:53 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define EXECUTOR_H
 
 # include "minishell.h"
-# include "parsing.h"
 
 // executor
 int					exec(char *cmd, char **argv, t_env *env);
@@ -39,7 +38,7 @@ int					ncompare(char *str1, char *str2, int n);
 char				*make_command(char *path, char *bin);
 char				*str_ndup(char *str, unsigned int n);
 char				*full_command_path(char *cmd, char **env);
-long long	ft_atoull(char *str);
+unsigned long long	ft_atoull(char *str, int *minus);
 
 // executor_utils2
 void				child_redircmd(t_redircmd *rcmd);
