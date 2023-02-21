@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:34:10 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 17:22:52 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:03:41 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include "minishell.h"
 

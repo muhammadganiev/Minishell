@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:39:33 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:07:31 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ int	exec(char *cmd, char **argv, t_env *env)
 	define_exec_signals();
 	if (ft_strequals(cmd, "exit"))
 	{
-		ft_exit(argv, env);
+		cmd_exit(argv, env);
 		return (0);
 	}
 	g_appinfo.exit_status = 0;
 	if (ft_strequals(cmd, "cd"))
-		ft_cd(argv, env);
+		cmd_cd(argv, env);
 	else if (ft_strequals(cmd, "env"))
 		print_env(env->kms);
 	else if (ft_strequals(cmd, "pwd"))
-		ft_pwd();
+		cmd_pwd();
 	else if (ft_strequals(cmd, "echo"))
-		ft_echo(argv);
+		cmd_echo(argv);
 	else if (ft_strequals(cmd, "export"))
-		ft_export(argv, env);
+		cmd_export(argv, env);
 	else if (ft_strequals(cmd, "unset"))
-		ft_unset(argv, env);
+		cmd_unset(argv, env);
 	else
-		ft_execve(cmd, argv, env);
+		cmd_execve(cmd, argv, env);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/12 16:27:57 by gchernys          #+#    #+#              #
-#    Updated: 2023/02/20 17:28:08 by muganiev         ###   ########.fr        #
+#    Updated: 2023/02/21 14:13:47 by muganiev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ OBJECTS				= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
 # COLORS
 GREEN 				= \033[0;32m
-RED 				= \033[0;31m
+YELLOW 				= \033[1;33m
+RED					= \033[0;31m
 RESET 				= \033[0m
 
 all: $(NAME)

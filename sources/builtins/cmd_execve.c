@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:37:07 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 17:18:06 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:06:20 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	error(char *cmd)
 	exit_app(127);
 }
 
-void	ft_execve(char *cmd, char **argv, t_env *env)
+void	cmd_execve(char *cmd, char **argv, t_env *env)
 {
 	char		*path;
 	pid_t		p_id;

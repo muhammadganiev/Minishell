@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:34:36 by muganiev          #+#    #+#             */
-/*   Updated: 2023/02/20 16:16:53 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:07:31 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int					exec(char *cmd, char **argv, t_env *env);
 int					runcmd(t_cmd *cmd);
 
 // builtins
-void				ft_echo(char **argv);
-void				ft_env(t_env *env);
-void				ft_exit(char **argv, t_env *env);
-void				ft_export(char **argv, t_env *env);
-void				ft_pwd(void);
+void				cmd_echo(char **argv);
+void				cmd_env(t_env *env);
+void				cmd_exit(char **argv, t_env *env);
+void				cmd_export(char **argv, t_env *env);
+void				cmd_pwd(void);
 char				*ft_get_pwd(void);
 void				ft_update_pwd(char *key, t_env *env);
-void				ft_unset(char **argv, t_env *env);
-void				ft_cd(char **argv, t_env *env);
+void				cmd_unset(char **argv, t_env *env);
+void				cmd_cd(char **argv, t_env *env);
 int					ft_chdir(char *path);
-void				ft_execve(char *cmd, char **argv, t_env *env);
+void				cmd_execve(char *cmd, char **argv, t_env *env);
 
 // executor_utils
 int					len_ch(char *str, char ch);
